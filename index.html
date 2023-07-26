@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plate-forme de trading</title>
+    <!-- Lien vers le fichier CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Liste d'actions et obligations </h1>
+
+    <!-- Liste des actions -->
+    <h2>Liste des actions :</h2>
+    <ul>
+        {% for action in actions %}
+        <li>Nom: {{ action.nom }}, Prix: {{ action.prix }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Liste des obligations -->
+    <h2>Liste des obligations :</h2>
+    <ul>
+        {% for obligation in obligations %}
+        <li>Nom: {{ obligation.nom }}, Prix: {{ obligation.prix }}, Taux d'intérêt: {{ obligation.taux_interet }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Lien vers le fichier JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
