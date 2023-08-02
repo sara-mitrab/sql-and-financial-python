@@ -23,8 +23,9 @@ class Obligations(Model):
         database = db
         table_name = 'obligations'
 
+
 class OperationsSurAction(Model):
-    action_id = ForeignKeyField(Actions, primary_key=True)
+    action_id = ForeignKeyField(Actions, primary_key=True, on_delete='CASCADE')  # Add on_delete='CASCADE'
     date = DateField()
     montant = FloatField()
 
