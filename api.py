@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+ from flask import Flask, jsonify, render_template, request
 from peewee import *
 from model import Actions, Obligations, OperationsSurAction, OperationsSurObligation
 
