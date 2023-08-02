@@ -1,68 +1,58 @@
+-- Table "actions"
 
-CREATE DATABASE projet;
-USE projet;
+CREATE DATABASE python; 
+USE python;
+CREATE TABLE actions (
+  id INTEGER PRIMARY KEY,
+  nom TEXT,
+  prix REAL,
+  quantite INTEGER
+);
 
+-- Table "obligations"
+CREATE TABLE obligations (
+  id INTEGER PRIMARY KEY,
+  nom TEXT,
+  prix REAL,
+  taux_interet REAL
+);
 
-CREATE TABLE Actions (
-  ID INT PRIMARY KEY,
-  Symbole VARCHAR(10),
-  Nom VARCHAR(255),
-  Description VARCHAR(255),
-  Secteur VARCHAR(50),
-  Pays VARCHAR(50),
-  ValeurNominale DECIMAL(10,2),
-  ValeurMarchande DECIMAL(10,2),
-  Dividende DECIMAL(10,2),
-  NombreActions INT,
-  Proprietaire VARCHAR(100),
-  DateEmission DATE
+CREATE TABLE operations_sur_action (
+  action_id INTEGER PRIMARY KEY,
+  date DATE,
+  montant REAL,
+  FOREIGN KEY (action_id) REFERENCES actions (id)
 );
 
 
-CREATE TABLE OperationsAction (
-  ID INT PRIMARY KEY,
-  ActionID INT,
-  TypeOperation VARCHAR(50),
-  Quantite INT,
-  Prix DECIMAL(10,2),
-  DateOperation DATE,
-  FOREIGN KEY (ActionID) REFERENCES Actions(ID)
+CREATE TABLE operations_sur_obligation (
+  obligation_id INTEGER PRIMARY KEY,
+  date DATE,
+  montant REAL,
+  FOREIGN KEY (obligation_id) REFERENCES obligations (id)
 );
 
 
-CREATE TABLE Obligations (
-  ID INT PRIMARY KEY,
-  Symbole VARCHAR(10),
-  Nom VARCHAR(255),
-  Description VARCHAR(255),
-  Pays VARCHAR(50),
-  Devise VARCHAR(10),
-  MontantNominal DECIMAL(10,2),
-  TauxInteret DECIMAL(5,2),
-  DateEmission DATE,
-  DateEcheance DATE,
-  Proprietaire VARCHAR(100)
-);
+INSERT INTO actions (id,nom, prix, quantite) VALUES
+    (1,'Action B', 15.2, 200),
+    (2,'Action C', 12.8, 150),
+    (3,'Action D', 8.5, 300);
 
 
-CREATE TABLE OperationsObligation (
-  ID INT PRIMARY KEY,
-  ObligationID INT,
-  TypeOperation VARCHAR(50),
-  Montant DECIMAL(10,2),
-  DateOperation DATE,
-  FOREIGN KEY (ObligationID) REFERENCES Obligations(ID)
-);
+INSERT INTO obligations (id,nom, prix, taux_interet) VALUES
+    (1,'Obligation C', 600, 0.03),
+    (2,'Obligation D', 550, 0.02),
+    (3,'Obligation E', 700, 0.04),
+    (4, 'obligation S', 8000, 3.4);
 
 
-INSERT INTO Actions (ID, Symbole, Nom, Description, Secteur, Pays, ValeurNominale, ValeurMarchande, Dividende, NombreActions, Proprietaire, DateEmission)
-VALUES (1, 'AAPL', 'Apple Inc.', 'Entreprise technologique', 'Technologie', 'États-Unis', 100.00, 150.00, 2.00, 1000000, 'John Doe', '2022-01-01');
+INSERT INTO operations_sur_action (action_id, date, montant) VALUES
+    (1, '2023-07-10', 1500),
+    (2, '2023-07-11', 2000),
+    (3, '2023-07-12', 1000);
 
-INSERT INTO OperationsAction (ID, ActionID, TypeOperation, Quantite, Prix, DateOperation)
-VALUES (1, 1, 'Achat', 100, 140.00, '2022-02-15');
 
-INSERT INTO Obligations (ID, Symbole, Nom, Description, Pays, Devise, MontantNominal, TauxInteret, DateEmission, DateEcheance, Proprietaire)
-VALUES (1, 'GOVT2025', 'Government Bond 2025', 'Obligation gouvernementale', 'États-Unis', 'USD', 1000.00, 3.50, '2021-01-01', '2025-01-01', 'Jane Smith');
-
-INSERT INTO OperationsObligation (ID, ObligationID, TypeOperation, Montant, DateOperation)
-VALUES (1, 1, 'Achat', 500.00, '2022-03-20');
+INSERT INTO operations_sur_obligation (obligation_id, date, montant) VALUES
+    (1, '2023-07-11', 500),
+    (2, '2023-07-12', 1000),
+    (3, '2023-07-13', 750);
