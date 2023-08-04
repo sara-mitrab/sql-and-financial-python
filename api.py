@@ -42,21 +42,15 @@ def add_action():
     else:
         return jsonify({"message": "Les données envoyées sont incomplètes."}), 400
 
-# Route to delete an existing action
-@app.route('/actions/<int:action_id>', methods=['DELETE'])
-def delete_action(action_id):
+#route to deleting an operation deal 
+@app.route('/actions/deal_id_ac/<int:deal_id_ac>', methods=['DELETE'])
+def delete_operation_on_action(deal_id_ac):
     try:
-        action = Actions.get(Actions.id == action_id)
-    except Actions.DoesNotExist:
-        return jsonify({"message": "L'action avec l'ID spécifié n'existe pas."}), 404
-
-    try:
-        action.delete_instance()
-        print("Action deleted:", action.id)
-        return jsonify({"message": "Action supprimée avec succès !"}), 200
-    except Exception as e:
-        print("Error deleting action:", str(e))
-        return jsonify({"message": "Une erreur s'est produite lors de la suppression de l'action.", "error": str(e)}), 500
+        operation = OperationsSurAction.get_by_id(deal_id_ac)
+        operation.delete_instance()
+        return jsonify({"message": "Opération sur action supprimée avec succès !"}), 200
+    except DoesNotExist:
+        return jsonify({"message": "L'opération sur action n'a pas été trouvée."}), 404
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
