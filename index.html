@@ -1,31 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Plate-forme de trading</title>
-    <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Plateforme Trading</title>
 </head>
 <body>
-    <h1>Liste d'actions et obligations </h1>
-
-    <!-- Liste des actions -->
-    <h2>Liste des actions :</h2>
-    <ul>
-        {% for action in actions %}
-        <li>Nom: {{ action.nom }}, Prix: {{ action.prix }}</li>
-        {% endfor %}
-    </ul>
-
-    <!-- Liste des obligations -->
-    <h2>Liste des obligations :</h2>
-    <ul>
-        {% for obligation in obligations %}
-        <li>Nom: {{ obligation.nom }}, Prix: {{ obligation.prix }}, Taux d'intérêt: {{ obligation.taux_interet }}</li>
-        {% endfor %}
-    </ul>
-
-    <!-- Lien vers le fichier JavaScript -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <div class="container">
+        <header>
+            <h1>Plateforme Trading</h1>
+        </header>
+        <nav>
+            <ul>
+                <li class="menu-item">Actions
+                    <ul class="submenu">
+                        <li><a href="#">Liste des actions</a></li>
+                        <li><a href="#">Opérations sur actions</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">Obligations
+                    <ul class="submenu">
+                        <li><a href="#">Liste des obligations</a></li>
+                        <li><a href="#">Opérations sur obligations</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <main>
+            <div class="random-euros">
+                <span id="euro1">€</span>
+                <span id="euro2">€</span>
+                <span id="euro3">€</span>
+            </div>
+            <table id="action-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Actions will be populated here -->
+                </tbody>
+            </table>
+            <table id="obligation-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Taux d'Intérêt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Obligations will be populated here -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
-
