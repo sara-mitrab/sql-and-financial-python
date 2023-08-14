@@ -1,16 +1,73 @@
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
-    margin: 20px;
 }
 
-h1, h2 {
-    color: #007bff;
+.container {
+    display: flex;
 }
 
-ul {
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    flex: 1;
+}
+
+nav {
+    background-color: #444;
+    color: white;
+    padding: 1rem;
+    width: 250px;
+}
+
+nav ul {
     list-style: none;
+    padding: 0;
 }
 
-li {
-    margin-bottom: 5px;
+.menu-item {
+    cursor: pointer;
+}
+
+.submenu {
+    display: none;
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.menu-item:hover .submenu {
+    display: block;
+}
+
+.main {
+    flex: 2;
+    padding: 1rem;
+}
+
+.random-euros {
+    font-size: 24px;
+    position: relative;
+}
+
+.random-euros::before {
+    content: "€";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
