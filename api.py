@@ -1,4 +1,4 @@
- from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request
 from peewee import *
 from model import Actions, Obligations, OperationsSurAction, OperationsSurObligation
 
@@ -24,7 +24,6 @@ def index():
     actions = Actions.select()
     obligations = Obligations.select().where(Obligations.taux_interet > 3)
     return render_template('index.html', actions=actions, obligations=obligations)
-
 # Route to add a new action
 @app.route('/actions', methods=['POST'])
 def add_action():
